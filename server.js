@@ -18,7 +18,7 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 
 app.get('/api/protected', jwtAuth, (req, res) => {
   return res.json({
-    data: 'go smoke a bong and play some fortnite'
+    data: 'SUPER SECRET DATA'
   });
 });
 
