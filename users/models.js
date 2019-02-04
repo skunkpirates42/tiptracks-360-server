@@ -32,6 +32,15 @@ UserSchema.statics.hashPassword = function (password) {
   return bcrypt.hash(password, 10);
 };
 
+UserSchema.set('toJSON', {
+  virtuals: true,
+  transform: (doc, result) => {
+    delete result._id;
+    delete result.__v;
+    delete result.password;
+  }
+});
+
 const User = mongoose.model('User', UserSchema);
 
 module.exports = { User };
