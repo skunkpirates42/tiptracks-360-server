@@ -1,6 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth/index');
 
@@ -8,6 +9,21 @@ const { PORT, DATABASE_URL } = require('./config');
 
 // Create instance of express application
 const app = express();
+
+// Logging
+app.use(morgan);
+
+
+// CORS
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  if (req.method === 'OPTIONS') {
+    return res.send(204);
+  }
+  next();
+});
 
 // Passport/Auth setup
 passport.use(localStrategy);
