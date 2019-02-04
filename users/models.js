@@ -32,6 +32,8 @@ UserSchema.statics.hashPassword = function (password) {
   return bcrypt.hash(password, 10);
 };
 
+UserSchema.set('timestamps', true);
+
 UserSchema.set('toJSON', {
   virtuals: true,
   transform: (doc, result) => {
