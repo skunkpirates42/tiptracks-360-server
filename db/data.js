@@ -13,4 +13,21 @@ const users = [
   }
 ];
 
-module.exports = { users };
+const dailyReports = [
+  {
+    baseWage: '5.25',
+    hours: '5',
+    notes: 'sdfsfs',
+    tippedOut: '10',
+    totalTips: '170'
+  },
+  {
+    baseWage: '5.25',
+    hours: '6',
+    notes: 'lorum ipsum...',
+    tippedOut: '15',
+    totalTips: '180'
+  }
+];
+
+module.exports = { users, dailyReports };
