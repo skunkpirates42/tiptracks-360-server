@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 // const morgan = require('morgan');
 
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth/index');
+const { router: userRouter } = require('./users/router');
 
 const { PORT, DATABASE_URL } = require('./config');
 
@@ -19,7 +20,7 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
   if (req.method === 'OPTIONS') {
-    return res.send(204);
+    return res.sendStatus(204);
   }
   next();
 });
@@ -33,6 +34,7 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 
 // Mount routers
 app.use('/api/auth/', authRouter);
+app.use('/api/users/', userRouter);
 
 app.get('/api/protected', jwtAuth, (req, res) => {
   return res.json({
