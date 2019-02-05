@@ -1,7 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const mongoose = require('mongoose');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth/index');
 
@@ -11,8 +11,7 @@ const { PORT, DATABASE_URL } = require('./config');
 const app = express();
 
 // Logging
-app.use(morgan);
-
+// app.use(morgan);
 
 // CORS
 app.use(function (req, res, next) {
