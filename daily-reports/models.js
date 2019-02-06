@@ -8,7 +8,8 @@ const schema = mongoose.Schema({
   hours: { type: String, required: true },
   notes: { type: String, default: ''},
   tippedOut: { type: String, default: ''},
-  totalTips: { type: String, required: true }
+  totalTips: { type: String, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
 schema.set('timestamps', true);

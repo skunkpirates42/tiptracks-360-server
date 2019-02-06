@@ -14,7 +14,8 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  fullName: { type: String, default: ''}
+  fullName: { type: String, default: ''},
+  dailyReports: [{ type: mongoose.Schema.Types.ObjectId, ref: 'DailyReport' }]
 });
 
 UserSchema.methods.serialize = function () {
