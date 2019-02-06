@@ -2,17 +2,24 @@ const mongoose = require('mongoose');
 const { DATABASE_URL } = require('../config');
 
 const { User } = require('../users/index');
-const { users } = require('../db/data');
+const { DailyReport } = require('../daily-reports/index');
+const { users, dailyReports } = require('../db/data');
 
 console.log(`Connecting to mongodb at ${DATABASE_URL}`);
 mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useCreateIndex: true })
   .then(() => {
     console.info('Deleting Data...');
-    return User.deleteMany();
+    return Promise.all([
+      User.deleteMany(),
+      DailyReport.deleteMany()
+    ]);
   })
   .then(() => {
     console.info('Seeding database...');
-    return User.insertMany(users);
+    return Promise.all([
+      User.insertMany(users),
+      DailyReport.insertMany(dailyReports)
+    ]);
   })
   .then(results => {
     console.log('Inserted', results);
