@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const { DailyReport } = require('./models');
+const { Tip } = require('./models');
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ const jsonParser = bodyParser.json();
 
 // GET all daily reports
 router.get('/', (req, res) => {
-  return DailyReport.find()
+  return Tip.find()
     .then(results => res.json(results))
     .catch(err => res.status(500).json({ message: 'Internal server error'}));
 });
@@ -19,7 +19,7 @@ router.post('/', jsonParser, (req, res) => {
   const { baseWage, hours, notes, tippedOut, totalTips, userId } = req.body;
   const newReport = { baseWage, hours, notes, tippedOut, totalTips, userId };
 
-  return DailyReport.create(newReport)
+  return Tip.create(newReport)
     .then(report => {
       return res.status(201).json(report);
     })

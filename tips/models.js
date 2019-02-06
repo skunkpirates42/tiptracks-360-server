@@ -22,6 +22,6 @@ schema.set('toJSON', {
   }
 });
 
-const DailyReport = mongoose.model('DailyReport', schema);
+const Tip = mongoose.model('Tip', schema);
 
-module.exports = { DailyReport };
+module.exports = { Tip };
