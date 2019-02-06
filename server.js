@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth/index');
 const { router: userRouter } = require('./users/router');
+const { router: reportRouter } = require('./daily-reports');
 
 const { PORT, DATABASE_URL } = require('./config');
 
@@ -35,6 +36,7 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 // Mount routers
 app.use('/api/auth/', authRouter);
 app.use('/api/users/', userRouter);
+app.use('/api/dailyreports/', reportRouter);
 
 app.get('/api/protected', jwtAuth, (req, res) => {
   return res.json({

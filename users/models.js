@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 // Force mongoose to use JS Promises instead of it's own version of Promises
 mongoose.Promise = global.Promise;
 
-const UserSchema = mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,

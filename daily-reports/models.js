@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 // Force mongoose to use JS Promises instead of it's own version of Promises
 mongoose.Promise = global.Promise;
 
-const schema = mongoose.Schema({
+const schema = new mongoose.Schema({
   baseWage: { type: String, required: true },
   hours: { type: String, required: true },
   notes: { type: String, default: ''},
