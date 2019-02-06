@@ -1,7 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const mongoose = require('mongoose');
-// const morgan = require('morgan');
+const morgan = require('morgan');
 
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth/index');
 const { router: userRouter } = require('./users/router');
@@ -13,7 +13,9 @@ const { PORT, DATABASE_URL } = require('./config');
 const app = express();
 
 // Logging
-// app.use(morgan);
+app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'common', {
+  skip: () => process.env.NODE_ENV === 'test'
+}));
 
 // CORS
 app.use(function (req, res, next) {

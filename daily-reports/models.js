@@ -6,10 +6,10 @@ mongoose.Promise = global.Promise;
 const schema = new mongoose.Schema({
   baseWage: { type: String, required: true },
   hours: { type: String, required: true },
-  notes: { type: String, default: ''},
-  tippedOut: { type: String, default: ''},
+  notes: { type: String, default: '' },
+  tippedOut: { type: String, default: '' },
   totalTips: { type: String, required: true },
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 });
 
 schema.set('timestamps', true);

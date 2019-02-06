@@ -23,7 +23,10 @@ router.post('/', jsonParser, (req, res) => {
     .then(report => {
       return res.status(201).json(report);
     })
-    .catch(err => res.status(500).json({ code: 500, message: 'Internal server error'}));
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ code: 500, message: 'Internal server error'});
+    });
 });
 
 module.exports = { router };
