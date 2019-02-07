@@ -20,6 +20,8 @@ const users = [
 const tips = [
   {
     _id: '200000000000000000000001',
+    date: '2019-02-04',
+    formattedDate: 'Monday, February 4th 2019',
     baseWage: '5.25',
     hours: '5',
     notes: 'sdfsfs',
@@ -29,6 +31,8 @@ const tips = [
   },
   {
     _id: '200000000000000000000002',
+    date: '2019-02-05',
+    formattedDate: 'Tuesday, February 5th 2019',
     baseWage: '5.25',
     hours: '6',
     notes: 'lorum ipsum...',
@@ -38,6 +42,8 @@ const tips = [
   },
   {
     _id: '200000000000000000000003',
+    date: '2019-02-04',
+    formattedDate: 'Monday, February 4th 2019',
     baseWage: '5',
     hours: '5',
     notes: 'sdfsfs',
@@ -47,6 +53,8 @@ const tips = [
   },
   {
     _id: '200000000000000000000004',
+    date: '2019-02-05',
+    formattedDate: 'Tuesday, February 5th 2019',
     baseWage: '5',
     hours: '4',
     notes: 'sdfsfs',
