@@ -9,7 +9,7 @@ const jsonParser = bodyParser.json();
 
 // GET all daily reports
 router.get('/', (req, res) => {
-  return Tip.find()
+  return Tip.find({userId: req.user.id})
     .then(results => res.json(results))
     .catch(err => res.status(500).json({ message: 'Internal server error'}));
 });
