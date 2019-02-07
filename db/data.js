@@ -24,7 +24,7 @@ const tips = [
     formattedDate: 'Tuesday, December 4th 2018',
     baseWage: '5.25',
     hours: '5',
-    notes: '',
+    notes: 'some notes here',
     tippedOut: '10',
     totalTips: '170',
     userId: '000000000000000000000001'

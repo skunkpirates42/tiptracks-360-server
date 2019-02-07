@@ -10,17 +10,24 @@ const jsonParser = bodyParser.json();
 
 // GET all daily reports
 router.get('/', (req, res) => {
-  const now = moment();
+  const userId = req.user.id;
+  // const now = moment();
   const weekAgo = moment().subtract(7, 'd');
-  const monthAgo = moment().subtract(1, 'M');
-  console.log('now is ========', now.format('dddd, MMMM Do YYYY'));
+  // const monthAgo = moment().subtract(1, 'M');
+  // console.log('now is ========', now.format('dddd, MMMM Do YYYY'));
   console.log('a week ago is ========', weekAgo.format('dddd, MMMM Do YYYY'));
-  console.log('a month ago is ========', monthAgo.format('dddd, MMMM Do YYYY'));
+  // console.log('a month ago is ========', monthAgo.format('dddd, MMMM Do YYYY'));
 
-  
-  return Tip.find({userId: req.user.id})
+  let filter = { userId };
+
+
+  /* { date: { $lte: weekAgo} } */
+  return Tip.find(filter)  /* put `filter` in `Tip.find()` for normal behavior */
     .then(results => res.json(results))
-    .catch(err => res.status(500).json({ message: 'Internal server error'}));
+    .catch(err => {
+      console.error(err);
+      return res.status(500).json({ message: 'Internal server error'});
+    });
 });
 
 // Save Daily Report to DB
