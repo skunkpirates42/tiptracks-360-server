@@ -10,6 +10,14 @@ const jsonParser = bodyParser.json();
 
 // GET all daily reports
 router.get('/', (req, res) => {
+  const now = moment();
+  const weekAgo = moment().subtract(7, 'd');
+  const monthAgo = moment().subtract(1, 'M');
+  console.log('now is ========', now.format('dddd, MMMM Do YYYY'));
+  console.log('a week ago is ========', weekAgo.format('dddd, MMMM Do YYYY'));
+  console.log('a month ago is ========', monthAgo.format('dddd, MMMM Do YYYY'));
+
+  
   return Tip.find({userId: req.user.id})
     .then(results => res.json(results))
     .catch(err => res.status(500).json({ message: 'Internal server error'}));
