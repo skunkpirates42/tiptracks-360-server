@@ -16,7 +16,8 @@ router.get('/', (req, res) => {
 
 // Save Daily Report to DB
 router.post('/', jsonParser, (req, res) => {
-  const { baseWage, hours, notes, tippedOut, totalTips, userId } = req.body;
+  const { baseWage, hours, notes, tippedOut, totalTips } = req.body;
+  const userId = req.user.id;
   const newReport = { baseWage, hours, notes, tippedOut, totalTips, userId };
 
   return Tip.create(newReport)
