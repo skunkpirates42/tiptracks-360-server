@@ -5,7 +5,6 @@ mongoose.Promise = global.Promise;
 
 const schema = new mongoose.Schema({
   date: { type: String, required: true },
-  formattedDate: { type: String },
   baseWage: { type: String, required: true },
   hours: { type: String, required: true },
   notes: { type: String, default: '' },
