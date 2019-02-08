@@ -11,15 +11,19 @@ const jsonParser = bodyParser.json();
 // GET all daily reports
 router.get('/', (req, res) => {
   const userId = req.user.id;
-  // const now = moment();
+  /* ********MOMENT SCRATCH TEST STUFF*********** */
+  const now = moment();
   const weekAgo = moment().subtract(7, 'd');
   // const monthAgo = moment().subtract(1, 'M');
   // console.log('now is ========', now.format('dddd, MMMM Do YYYY'));
   console.log('a week ago is ========', weekAgo.format('dddd, MMMM Do YYYY'));
   // console.log('a month ago is ========', monthAgo.format('dddd, MMMM Do YYYY'));
 
+  const difference = now.diff(weekAgo, 'days');
+  console.log(difference);
+  /* ********MOMENT SCRATCH TEST STUFF*********** */
+    
   let filter = { userId };
-
 
   /* { date: { $lte: weekAgo} } */
   return Tip.find(filter)  /* put `filter` in `Tip.find()` for normal behavior */

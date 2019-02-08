@@ -33,6 +33,22 @@ app.use('/api/auth/', authRouter);
 app.use('/api/users/', userRouter);
 app.use('/api/tips/', jwtAuth, reportRouter);
 
+// Custom 404 Not Found route handler
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// Custom Error Handler
+app.use((err, req, res, next) => {
+  if (err.status) {
+    const errBody = { ...err, message: err.message };
+    res.status(err.status).json(errBody);
+  } else {
+    res.status(500).json({ message: 'Internal Server Error'});
+  }
+});
 
 // Listen for incoming connections 
 if (require.main === module) {
@@ -52,3 +68,5 @@ if (require.main === module) {
     console.error(err);
   });
 }
+// export app for testing
+module.exports = app;
