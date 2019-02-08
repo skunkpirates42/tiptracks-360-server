@@ -9,7 +9,7 @@ const router = express.Router();
 const jsonParser = bodyParser.json();
 
 // GET all daily reports
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   const userId = req.user.id;
   /* ********MOMENT SCRATCH TEST STUFF*********** */
   const now = moment();
@@ -26,16 +26,13 @@ router.get('/', (req, res) => {
   let filter = { userId };
 
   /* { date: { $lte: weekAgo} } */
-  return Tip.find(filter)  /* put `filter` in `Tip.find()` for normal behavior */
+  return Tip.find(filter) 
     .then(results => res.json(results))
-    .catch(err => {
-      console.error(err);
-      return res.status(500).json({ message: 'Internal server error'});
-    });
+    .catch(err => next(err));
 });
 
 // Save Daily Report to DB
-router.post('/', jsonParser, (req, res) => {
+router.post('/', jsonParser, (req, res, next) => {
   const { date, baseWage, hours, notes, tippedOut, totalTips } = req.body;
   const userId = req.user.id;
   const formattedDate = moment(date).format('dddd, MMMM Do YYYY');
@@ -45,10 +42,7 @@ router.post('/', jsonParser, (req, res) => {
     .then(report => {
       return res.status(201).json(report);
     })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ code: 500, message: 'Internal server error'});
-    });
+    .catch(err => next(err));
 });
 
 module.exports = { router };

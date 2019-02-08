@@ -8,7 +8,7 @@ const router = express.Router();
 const jsonParser = bodyParser.json();
 
 // Post to register a new user
-router.post('/', jsonParser, (req, res) => {
+router.post('/', jsonParser, (req, res, next) => {
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
 
@@ -127,7 +127,7 @@ router.post('/', jsonParser, (req, res) => {
       if (err.reason === 'ValidationError') {
         return res.status(err.code).json(err);
       }
-      res.status(500).json({code: 500, message: 'Internal server error'});
+      next(err);
     });
 });
 
@@ -135,10 +135,10 @@ router.post('/', jsonParser, (req, res) => {
 // we're just doing this so we have a quick way to see
 // if we're creating users. keep in mind, you can also
 // verify this in the Mongo shell.
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   return User.find()
     .then(users => res.json(users.map(user => user.serialize())))
-    .catch(err => res.status(500).json({message: 'Internal server error'}));
+    .catch(err => next(err));
 });
 
 module.exports = { router };
