@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { Tip } = require('./models');
 
@@ -26,6 +27,21 @@ router.post('/', jsonParser, (req, res, next) => {
     .then(report => {
       return res.status(201).json(report);
     })
+    .catch(err => next(err));
+});
+
+router.delete('/:id', (req, res, next) => {
+  const { id } = req.params;
+  const userId = req.user.id;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    const err = new Error('The `id` is not valid');
+    err.status = 400;
+    return next(err);
+  }
+
+  Tip.findOneAndDelete({_id: id, userId})
+    .then(() => res.sendStatus(204))
     .catch(err => next(err));
 });
 
