@@ -11,7 +11,7 @@ const schema = new mongoose.Schema({
   tippedOut: { type: String, default: '' },
   totalTips: { type: String, required: true },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  jobs: { type: mongoose.Schema.Types.ObjectId, ref: 'Job' }
+  job: { type: mongoose.Schema.Types.ObjectId, ref: 'Job' }
 });
 
 schema.set('timestamps', true);
