@@ -15,7 +15,8 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
   fullName: { type: String, default: ''},
-  tips: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tip' }]
+  tips: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tip' }],
+  jobs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Job' }]
 });
 
 UserSchema.methods.serialize = function () {
