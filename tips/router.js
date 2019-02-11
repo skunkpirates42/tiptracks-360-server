@@ -12,7 +12,8 @@ router.get('/', (req, res, next) => {
   const userId = req.user.id;
   let filter = { userId };
 
-  return Tip.find(filter) 
+  return Tip.find(filter)
+    .sort({date: 1})
     .then(results => res.json(results))
     .catch(err => next(err));
 });
