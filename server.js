@@ -7,6 +7,7 @@ const cors = require('cors');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth/index');
 const { router: userRouter } = require('./users/router');
 const { router: reportRouter } = require('./tips/index');
+const { router: jobsRouter } = require('./jobs/index');
 
 const { PORT, DATABASE_URL, CLIENT_ORIGIN } = require('./config');
 
@@ -32,6 +33,7 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 app.use('/api/auth/', authRouter);
 app.use('/api/users/', userRouter);
 app.use('/api/tips/', jwtAuth, reportRouter);
+app.use('/api/jobs/', jwtAuth, jobsRouter);
 
 // Custom 404 Not Found route handler
 app.use((req, res, next) => {
