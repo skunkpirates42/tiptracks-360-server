@@ -7,6 +7,15 @@ const router = express.Router();
 
 const jsonParser = bodyParser.json();
 
+router.get('/', (req, res, next) => {
+  const userId = req.user.id;
+  let filter = { userId };
+
+  return Job.find(filter)
+    .then(results => res.json(results))
+    .catch(err => next(err));
+});
+
 router.post('/', jsonParser, (req, res, next) => {
   const { job, position, baseWage } = req.body;
   const userId = req.user.id;
