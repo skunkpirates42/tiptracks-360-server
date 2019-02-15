@@ -32,6 +32,46 @@ router.post('/', jsonParser, (req, res, next) => {
     .catch(err => next(err));
 });
 
+router.put('/:id', jsonParser, (req, res, next) => {
+  const { id } = req.params;
+  const userId = req.user.id;
+
+  const updateTip = {};
+  const updateTipFields = [
+    'date',
+    'totalTips',
+    'tippedOut',
+    'baseWage',
+    'hours',
+    'notes'
+  ];
+
+  updateTipFields.forEach(field => {
+    if (field in req.body) {
+      updateTip[field] = req.body[field];
+    }
+  });
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    const err = new Error('The `id` is not valid');
+    err.status = 400;
+    return next(err);
+  }
+
+  Tip.findOneAndUpdate({_id: id, userId}, updateTip, { new: true })
+    .then(result => {
+      if (result) {
+        res.json(result);
+      } else {
+        next();
+      }
+    })
+    .catch(err => {
+      next(err);
+    });
+
+});
+
 router.delete('/:id', (req, res, next) => {
   const { id } = req.params;
   const userId = req.user.id;
