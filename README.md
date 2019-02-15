@@ -14,5 +14,9 @@ This app has authentication set-up with [passport.js](http://www.passportjs.org/
 to securely hash and salt passwords for safe storage in my DB.
 
 It also uses [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) or JWT's to allow the user to stay "authenticated" 
-over a certain period (denotated in my config.js file) of time without having to re-authenticate every-time they visit the
-app.
+over a certain period (denotated in my config.js file) of time without having to log back in and go 
+through the proccess of verifying their credentials (which entails a query to the DB) every-time they visit the
+app. 
+
+### Lay out of the code
+
