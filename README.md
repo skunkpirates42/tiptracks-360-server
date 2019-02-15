@@ -20,3 +20,4 @@ app.
 
 ### Lay out of the code
 
+File Tree: <img width="416" alt="screen shot 2019-02-15 at 1 43 04 pm" src="https://user-images.githubusercontent.com/34561773/52877535-435afc80-3128-11e9-8de5-e0a3cf35248b.png">
