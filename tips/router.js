@@ -13,6 +13,7 @@ router.get('/', (req, res, next) => {
   let filter = { userId };
 
   return Tip.find(filter)
+    .populate('job')
     .sort({date: 1})
     .then(results => res.json(results))
     .catch(err => next(err));
