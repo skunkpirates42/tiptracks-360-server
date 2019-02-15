@@ -27,7 +27,7 @@ router.post('/', jsonParser, (req, res, next) => {
   
   return Tip.create(newReport)
     .then(report => {
-      return res.status(201).json(report);
+      return res.location(`${req.originalUrl}/${report.id}`).status(201).json(report);
     })
     .catch(err => next(err));
 });
