@@ -25,19 +25,34 @@ app.
 File Tree:
 <img width="416" alt="screen shot 2019-02-15 at 1 43 04 pm" src="https://user-images.githubusercontent.com/34561773/52877535-435afc80-3128-11e9-8de5-e0a3cf35248b.png">
 
+#### Server and Routes
 In server.js I have set up my initial server and connection to the DB server. With expressRouter, you can modularize your
 routes code, and move it out of the server.js file. There is a couple lines of code that "mount" those routers onto my server,
 within the server.js file. This allows for a nice clean server.js file. In the directories tips, jobs, users and auth, exists
 those modularized routes (all called route.js)
 
+#### Dummy Data and seed utility
 The db directory contains some dummy data that I'm using to seed my DB to see if everything is working correctly with data in 
 my development environment. The code for actually seeding the db lives in the utils/seed.js file
 
+#### Authentication and JWT
 The authorizarition code lives in the auth directory. In there are passport strategies, which basically define how the 
 authorization process should work. There is also a router file in auth that define the enpoints for login and auth and the 
 "refreshing" of JWT's.
 
+#### Mongoose
 The users, jobs and tips directories all have a models.js file that define the the Mongoose Schemas for each of those
 particular collections. This Schema is like a blue print for how the data should look when it's in the DB
 
-The test directory contains unit tests for my different enpoints and my server.
+#### Tests
+The test directory contains unit tests unsing Mocha and Chai for my different enpoints and my server.
+
+### Developer Directions
+To get started clone this repo down onto your machine and run `npm install` from the root directory of this project.
+Before you start up the server you will need to make a `.env` file in the root directory and type in `JWT_SECRET=[YOUR SECRET
+KEY HERE]`. You should be good to start the server now...To start up the server you can run `npm start` or `npm run dev`,
+which will run nodemon (this allows you to make changes to the app without having to shut down and restart to server
+everytime).
+
+
+ 
