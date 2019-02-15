@@ -102,9 +102,9 @@ router.post('/', jsonParser, (req, res, next) => {
       if (count > 0) {
         // There is an existing user with the same username
         return Promise.reject({
-          code: 422,
+          code: 400,
           reason: 'ValidationError',
-          message: 'Username already taken',
+          message: 'The username already exists',
           location: 'username'
         });
       }
@@ -119,14 +119,20 @@ router.post('/', jsonParser, (req, res, next) => {
       });
     })
     .then(user => {
-      return res.status(201).json(user.serialize());
+      return res.location(`${req.originalUrl}/${user.id}`).status(201).json(user);
     })
     .catch(err => {
+      if (err.code === 11000) {
+        err = new Error('The username already exists');
+        err.status(400);
+      }
       // Forward validation errors on to the client, otherwise give a 500
       // error because something unexpected has happened
       if (err.reason === 'ValidationError') {
         return res.status(err.code).json(err);
       }
+
+      
       next(err);
     });
 });
