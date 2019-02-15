@@ -2,7 +2,7 @@
 [![Build Status](https://www.travis-ci.org/thinkful-ei27/peter-capstone-server.svg?branch=master)](https://www.travis-ci.org/thinkful-ei27/peter-capstone-server)
 
 #### This is the backend API for my Tip Tracks 360 app. You can view the deployed version [here](https://tips-app-client.herokuapp.com/)
-    -- To read more about what the app actually does please visit the 
+   - To read more about what the app actually does please visit the 
     [client-side github repository](https://github.com/thinkful-ei27/peter-capstone-client) for this app, and view the README.
 
 ### Technology Stack
