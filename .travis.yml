@@ -1,3 +1,10 @@
 language: node_js
 node_js: node
 services: mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: OTL2VdQLJTj27E6aQgY+kksyv3iAeAMvHg2f/7NenVkQO3Ym4QthhBlTxVPJ99yTa5cfusPYAGtLw/iHOMyC7maCybgW8fPbusfUP+8icMLwi5KBPJ0ZQjR10PltEfKTaJTzZsOUqTCEi9+sYOfskr/fDn2eVeIHPovn4M/Ed60VwT4yKuV7B3ZuwucfMOo5Cz2RrHG6wTzNxBT/6dP0RfhK7npYixE+iGthls4ag4w00EPiewu6fh09dgCIIyA2vC54Uyef3NEnA+1qjHxz09PxOVuzvijtxJKmGJgA3UumN4q4xpjxleHtFHRPH72RgypiJL5dj1KoJmbBs/4yoTHi3W1MozoEDgMAKELSTIAQiOGfPX+EXMq4kSZInacikjbdq3W5gmPsW8GH64NDRf+EI7oNUTNPEIO3LaTP8Dy7elvEguBOoWfqMXVd0F2639QfYTa4pHle6xRW1Mx2Kk49hr/cvNB7EpGYWIDiAbWpydxv1G3BGa1kD/+eZd2fQgjpUYP6xbm531UvLcatqMZzGYGTOs+x+PgRgvf7K4zheDt2pGP+7ZhmTqSDkSa20uoVu19hnd+5UCVvgoNGPY/7TX6KQgq5YqgtFLnktt4JoTNiTfA3YxOmwaiYwxtS6MDNjW3hwpyy5xtLHUCBaP3xybzzTy49uzyxKzC6Z7M=
+  app: peter-capstone-server
+  on:
+    repo: thinkful-ei27/peter-capstone-server
