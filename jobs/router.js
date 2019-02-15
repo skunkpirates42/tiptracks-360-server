@@ -37,7 +37,7 @@ router.post('/', jsonParser, (req, res, next) => {
   
   return Job.create(newJob)
     .then(job => {
-      return res.status(201).json(job);
+      return res.location(`${req.originalUrl}/${job.id}`).status(201).json(job);
     })
     .catch(err => next(err));
 });

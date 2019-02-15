@@ -14,7 +14,7 @@ const { tips, jobs, users } = require('../db/data');
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-describe('Tip Tracks API - Tips', function () {
+describe('Tip Tracks API - Jobs', function () {
   let user = {};
   let token;
   before(function () {
@@ -42,14 +42,14 @@ describe('Tip Tracks API - Tips', function () {
     return mongoose.disconnect();
   });
 
-  describe('GET /api/tips', function () {
 
+  describe('GET /api/jobs', function () {
 
-    it('should return the correct number of tips', function () {
+    it('should return the correct number of jobs', function () {
       return Promise.all([
-        Tip.find({ userId: user.id}),
+        Job.find({ userId: user.id}),
         chai.request(app)
-          .get('/api/tips')
+          .get('/api/jobs')
           .set('Authorization', `Bearer ${token}`)
       ])
         .then(([data, res]) => {
@@ -62,9 +62,9 @@ describe('Tip Tracks API - Tips', function () {
 
     it('should return a list sorted desc with the correct right fields', function () {
       return Promise.all([
-        Tip.find({ userId: user.id }).sort({ updatedAt: 'desc' }),
+        Job.find({ userId: user.id }).sort({ updatedAt: 'desc' }),
         chai.request(app)
-          .get('/api/tips')
+          .get('/api/jobs')
           .set('Authorization', `Bearer ${token}`)
       ])
         .then(([data, res]) => {
@@ -75,7 +75,7 @@ describe('Tip Tracks API - Tips', function () {
           res.body.forEach(function (item, i) {
             expect(item).to.be.a('object');
             // Note: folderId, tags and content are optional
-            expect(item).to.include.all.keys('id', 'totalTips', 'tippedOut', 'notes', 'hours', 'date', 'baseWage', 'job', 'createdAt', 'updatedAt', 'userId');
+            expect(item).to.include.all.keys('id', 'position', 'baseWage', 'job', 'tips', 'createdAt', 'updatedAt', 'userId');
             // expect(item.id).to.equal(data[i].id);
             expect(item.title).to.equal(data[i].title);
             expect(item.content).to.equal(data[i].content);
@@ -93,16 +93,13 @@ describe('Tip Tracks API - Tips', function () {
     it('should create and return a new item when provided valid data', function () {
       const newItem = {
         baseWage: '5',
-        date: '2019-02-07',
-        hours: '4.25',
-        notes: 'sdfsfs',
-        tippedOut: '5',
-        totalTips: '110'
+        job: 'Main St. Bistro',
+        position: 'server',
       };
 
       let res;
       return chai.request(app)
-        .post('/api/tips')
+        .post('/api/jobs')
         .set('Authorization', `Bearer ${token}`)
         .send(newItem)
         .then(_res => {
@@ -111,7 +108,7 @@ describe('Tip Tracks API - Tips', function () {
           expect(res).to.have.header('location');
           expect(res).to.be.json;
           expect(res.body).to.be.a('object');
-          return Tip.findOne({ _id: res.body.id, userId: user.id });
+          return Job.findOne({ _id: res.body.id, userId: user.id });
         })
         .then(data => {
           expect(res.body.id).to.equal(data.id);
@@ -126,35 +123,4 @@ describe('Tip Tracks API - Tips', function () {
 
   });
 
-  describe('DELETE /api/tips/:id', function () {
-
-    it('should delete an existing document and respond with 204', function () {
-      let data;
-      return Tip.findOne({ userId: user.id })
-        .then(_data => {
-          data = _data;
-
-          return chai.request(app)
-            .delete(`/api/tips/${data.id}`)
-            .set('Authorization', `Bearer ${token}`);
-        })
-        .then(res => {
-          expect(res).to.have.status(204);
-          return Tip.countDocuments({ _id: data.id });
-        })
-        .then(count => {
-          expect(count).to.equal(0);
-        });
-    });
-
-    it('should respond with a 400 for an invalid id', function () {
-      return chai.request(app)
-        .delete('/api/tips/NOT-A-VALID-ID')
-        .set('Authorization', `Bearer ${token}`)
-        .then(res => {
-          expect(res).to.have.status(400);
-          expect(res.body.message).to.equal('The `id` is not valid');
-        });
-    });
-  });
 });
