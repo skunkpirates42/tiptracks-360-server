@@ -35,7 +35,7 @@ const tips = [
     tippedOut: '10',
     totalTips: '170',
     userId: '000000000000000000000001',
-    job: '300000000000000000000000'
+    job: 'Main Street Bistro'
   },
   {
     _id: '200000000000000000000001',
@@ -46,7 +46,7 @@ const tips = [
     tippedOut: '10',
     totalTips: '170',
     userId: '000000000000000000000001',
-    job: '300000000000000000000000'
+    job: 'Main Street Bistro'
   },
   {
     _id: '200000000000000000000002',
@@ -57,7 +57,7 @@ const tips = [
     tippedOut: '15',
     totalTips: '180',
     userId: '000000000000000000000001',
-    job: '300000000000000000000000'
+    job: 'Main Street Bistro'
   },
   {
     _id: '200000000000000000000003',
@@ -68,7 +68,7 @@ const tips = [
     tippedOut: '5',
     totalTips: '90',
     userId: '000000000000000000000002',
-    job: '300000000000000000000001'
+    job: 'Bob\'s Bar and Grill'
   },
   {
     _id: '200000000000000000000004',
@@ -79,7 +79,7 @@ const tips = [
     tippedOut: '5',
     totalTips: '120',
     userId: '000000000000000000000002',
-    job: '300000000000000000000001'
+    job: 'Bob\'s Bar and Grill'
   },
   {
     _id: '200000000000000000000006',
@@ -90,7 +90,7 @@ const tips = [
     tippedOut: '5',
     totalTips: '120',
     userId: '000000000000000000000002',
-    job: '300000000000000000000001'
+    job: 'Bob\'s Bar and Grill'
   },
   {
     _id: '200000000000000000000007',
@@ -101,7 +101,7 @@ const tips = [
     tippedOut: '5',
     totalTips: '120',
     userId: '000000000000000000000001',
-    job: '300000000000000000000000'
+    job: 'Main Street Bistro'
   },
   {
     _id: '200000000000000000000008',
@@ -112,7 +112,7 @@ const tips = [
     tippedOut: '5',
     totalTips: '120',
     userId: '000000000000000000000002',
-    job: '300000000000000000000001'
+    job: 'Bob\'s Bar and Grill'
   },
   {
     _id: '200000000000000000000009',
@@ -123,7 +123,7 @@ const tips = [
     tippedOut: '5',
     totalTips: '120',
     userId: '000000000000000000000001',
-    job: '300000000000000000000000'
+    job: 'Main Street Bistro'
   },
   {
     _id: '200000000000000000000010',
@@ -134,7 +134,7 @@ const tips = [
     tippedOut: '5',
     totalTips: '100',
     userId: '000000000000000000000002',
-    job: '300000000000000000000001'
+    job: 'Bob\'s Bar and Grill'
   },
   {
     _id: '200000000000000000000011',
@@ -145,7 +145,7 @@ const tips = [
     tippedOut: '5',
     totalTips: '110',
     userId: '000000000000000000000001',
-    job: '300000000000000000000000'
+    job: 'Main Street Bistro'
   },
   {
     _id: '200000000000000000000012',
@@ -156,7 +156,7 @@ const tips = [
     tippedOut: '5',
     totalTips: '130',
     userId: '000000000000000000000002',
-    job: '300000000000000000000001'
+    job: 'Bob\'s Bar and Grill'
   },
 ];
 

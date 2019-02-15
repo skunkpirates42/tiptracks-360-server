@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { Tip } = require('./models');
+const { Job } = require('../jobs/index');
 
 const router = express.Router();
 
@@ -13,7 +14,6 @@ router.get('/', (req, res, next) => {
   let filter = { userId };
 
   return Tip.find(filter)
-    .populate('job')
     .sort({date: 1})
     .then(results => res.json(results))
     .catch(err => next(err));
@@ -23,9 +23,13 @@ router.get('/', (req, res, next) => {
 router.post('/', jsonParser, (req, res, next) => {
   const { date, baseWage, hours, notes, tippedOut, totalTips } = req.body;
   const userId = req.user.id;
-  const newReport = { date, baseWage, hours, notes, tippedOut, totalTips, userId };
-  
-  return Tip.create(newReport)
+
+  return Job.find({ userId}) 
+    .then(results => {
+      const job = results[0].job;
+      const newReport = { date, baseWage, hours, notes, tippedOut, totalTips, userId, job };
+      return Tip.create(newReport);
+    })
     .then(report => {
       return res.location(`${req.originalUrl}/${report.id}`).status(201).json(report);
     })
