@@ -48,11 +48,10 @@ particular collections. This Schema is like a blue print for how the data should
 The test directory contains unit tests unsing Mocha and Chai for my different enpoints and my server.
 
 ### Developer Directions
-To get started clone this repo down onto your machine and run `npm install` from the root directory of this project.
-Before you start up the server you will need to make a `.env` file in the root directory and type in `JWT_SECRET=[YOUR SECRET
-KEY HERE]`. You should be good to start the server now...To start up the server you can run `npm start` or `npm run dev`,
-which will run nodemon (NOTE: you may need to `npm install nodemon` - this allows you to make changes to the app without having to shut down and restart to server
-everytime to see those changes reflected).
+To get started clone this repo down onto your machine and run ```npm install``` from the root directory of this project.
+Before you start up the server you will need to make a `.env` file in the root directory and type in ```JWT_SECRET=[YOUR SECRET KEY HERE]```. You should be good to start the server now...To start up the server you can run ```npm start``` or 
+```npm run dev```, which will run nodemon (NOTE: you may need to ```npm install nodemon``` - this allows you to make changes
+to the app without having to shut down and restart to server everytime to see those changes reflected).
 
 
  
