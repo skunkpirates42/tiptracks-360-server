@@ -19,6 +19,22 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err));
 });
 
+router.get('/:id', (req, res, next) => {
+  const userId = req.user.id;
+  const id = req.params.id;
+
+  let filter = { userId, _id: id };
+
+  return Tip.findById(filter)
+    .then(results => {
+      if (!results) {
+        next();
+      }
+      res.json(results);
+    })
+    .catch(err => next(err));
+});
+
 // Save Daily Report to DB
 router.post('/', jsonParser, (req, res, next) => {
   const { date, baseWage, hours, notes, tippedOut, totalTips } = req.body;
